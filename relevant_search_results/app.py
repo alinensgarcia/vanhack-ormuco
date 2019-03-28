@@ -13,7 +13,7 @@ def index():
         'Google search results about some topic.'
 
 @app.route('/relevant-search-results/api/v1.0/results/<search_topic>', methods=['GET'])
-def get_tasks():
+def get_relevant_results():
     if len(task) == 0:
         abort(404)
 
