@@ -17,9 +17,8 @@ class ContentAnalyzerTest(TestCase):
             self.html_pages[url] = _get_page_html(url)
 
     def test_get_relevant_content(self):
-        json_relevant_contents = ContentAnalyzer().get_relevant_contents(
+        relevant_contents = ContentAnalyzer().get_relevant_contents(
                                     self.html_pages)
-        relevant_contents = json.loads(json_relevant_contents)
         
         for url, relevant_content in relevant_contents.items():
             self.assertIn('http', url)

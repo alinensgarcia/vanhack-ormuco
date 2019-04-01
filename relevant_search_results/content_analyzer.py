@@ -1,52 +1,49 @@
 import json
 
 class ContentAnalyzer():
-    def get_relevant_contents(self, dict_html_pages):
-        'return: {link: relevant_content}'
-        
+    def get_relevant_contents(self, dict_html_pages):        
+        '''
+        Return relevant content as above:
+
+        relevant_contents = {
+            'url': ['paragraph', 'code_snippet', 'comment'],
+            'url2': ['paragraph', 'paragraph2', 'code_snippet', 'code_snippet2'],
+            ...
+        }
+        '''
+
         relevant_contents = {}
         for url, html in dict_html_pages.items():
-
             if 'github' in url:
-                relevant_content = self.__extract_text_from_html_element(
-                                            html, '//td')
+                relevant_contents[url] = self.__get_list_page_contents(
+                                                                html, '//td')
             else:
-                # extract relevant paragraphs
-                relevant_content = self._extract_relevant_paragraphs(html)
-                
-                # extract code snipetts
-                relevant_content += self._extract_code_snippets(html)
-                
-            relevant_contents[url] = relevant_content
+                relevant_contents[url] = (
+                    self._extract_relevant_paragraphs(html) + \
+                    self._extract_code_snippets(html)
+                )
 
-        json_relevant_contents = json.dumps(relevant_contents, indent=4)
-        return json_relevant_contents
+        return relevant_contents
 
 
     def _extract_code_snippets(self, html):
-        pre_code = self.__extract_text_from_html_element(html, '//pre//code')
-        text = 'CODE SNIPPETS:\n'
+        '''return: ['content1', 'content2']'''
 
-        if len(pre_code) > 0:
-            text += pre_code
-        else:
-            text += self.__extract_text_from_html_element(html, '//pre')
+        pre_code = self.__get_list_page_contents(html, '//pre//code')
+        pre = self.__get_list_page_contents(html, '//pre')
 
-        return text
-
+        return pre_code + pre
 
     def _extract_relevant_paragraphs(self, html):
-        text = 'PARAGRAPHS:\n'
-        return text + self.__extract_text_from_html_element(html, '//p')
+        return self.__get_list_page_contents(html, '//p')
 
-
-    def __extract_text_from_html_element(self, html_page, xpath_str):
+    def __get_list_page_contents(self, html_page, xpath_str):
         elements = html_page.xpath(xpath_str)
-        text = ''
+        contents = []
 
         # returns text content with lenght greater than 5 (arbitrary rule)
         for e in elements:
             if len(e.text_content()) > 5:
-                text += '{}\n'.format(e.text_content())
-
-        return text
+                contents.append(e.text_content().replace('\t','').strip())
+        
+        return contents

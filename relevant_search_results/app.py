@@ -1,5 +1,5 @@
 #!venv/bin/python3.6
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, render_template
 from results_extractor import ResultsExtractor
 
 # Referencia
@@ -19,11 +19,10 @@ def get_relevant_results(search_topic):
 
     if search_topic != 'keystone - Circular reference found role inference':
         return 'Search topic not supported yet.'
-
-    # print(search_topic)
-    relevant_content = ResultsExtractor(search_topic).get_relevant_contents()
-    print(relevant_content)
-    return relevant_content
+    
+    relevant_contents = ResultsExtractor(search_topic).get_relevant_contents()
+    
+    return render_template('template.html', relevant_contents=relevant_contents)
 
 @app.errorhandler(404)
 def not_found(error):

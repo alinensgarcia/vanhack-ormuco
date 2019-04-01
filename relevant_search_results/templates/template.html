@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<style>
+    pre {
+        display: block;
+        margin: 0 0 18px;
+        word-break: break-all;
+        word-wrap: break-word;
+        color: #333;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 10px 10px 10px;
+    }
+
+    pre code {
+        font-family: monospace, monospace;
+        font-size: inherit;
+        color: inherit;
+        white-space: pre-wrap;
+        background-color: transparent;
+        border-radius: 0
+    }
+</style>
+</head>
+   <body>
+
+    {% for url, list_contents in relevant_contents.items() %}
+        <h1>URL: <a href="{{ url }}">{{ url }}</a></h1>
+        <hr>
+        
+        {% for content in list_contents %}
+            <pre><code>{{ content }}</code></pre>
+        {% endfor %}
+    {% endfor %}
+
+   </body>
+</html>
