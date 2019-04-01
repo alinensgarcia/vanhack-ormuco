@@ -9,15 +9,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'This API returns the most relevant content from top 5 '
+    return 'This API returns the most relevant content from top 5 ' \
         'Google search results about some topic.'
 
-@app.route('/relevant-search-results/api/v1.0/results/<search_topic>', methods=['GET'])
-def get_relevant_results():
-    if len(task) == 0:
+@app.route('/relevant_results/<search_topic>', methods=['GET'])
+def get_relevant_results(search_topic):
+    if len(search_topic) == 0:
         abort(404)
 
-    return ResultsExtractor(search_topic).extract_results()
+    if search_topic != 'keystone - Circular reference found role inference':
+        return 'Search topic not supported yet.'
+
+    # print(search_topic)
+    relevant_content = ResultsExtractor(search_topic).get_relevant_contents()
+    print(relevant_content)
+    return relevant_content
 
 @app.errorhandler(404)
 def not_found(error):

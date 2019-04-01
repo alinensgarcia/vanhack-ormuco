@@ -1,3 +1,9 @@
+- Project Overview
+  - Description
+  - App, Extractor, Crawler, Content Analyzer (desenhar um diagrama simples)
+    - Explicar com mais detalhes o que cada caixinha faz.
+  - Modelagem de entidades visou desacoplamento e organização lógica, facilitando a manutenção e evolução do código.
+
 
 # Environment preparing
 
@@ -26,9 +32,11 @@ chmod a+x app.py
 
 # Tests
 
-Tests (unit and integrated):
-``` python -m unittest discover```
+
+```python -m unittest discover tests -p "*_test.py"```
 
 # Next steps...
+Functionalities:
+    - Topic generalization. Not an easy task because the type of results vary a lot accordingly to theme. The search phrase of this example is about software development, so the results were mainly code snippets and forum messages.
 
-- TO-DO
+    - Dockerfile
