@@ -23,6 +23,7 @@ Examples:
 '"2" is greater than "1"'
 >>> c.which_is_lesser()
 '"1" is lesser than "2"'
+
 >>> c = ComparisonsBetweenTwoStrings('b','a')
 >>> c.are_they_equal()
 '"b" and "a" are differents'
