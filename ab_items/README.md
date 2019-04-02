@@ -1,4 +1,4 @@
-# Exercise A
+# Question A
 The lines_overlap.two_lines_overlap() funcion accepts two lines (x1,x2) and (x3,x4) on the x-axis and returns whether they overlap.
 
 Examples:
@@ -10,12 +10,13 @@ Examples:
 'No Overlap'
 ```
 
-# Exercise B
+# Question B
 A library that accepts 2 version string as input and returns whether one is greater than, equal, or less than the other. 
 
 Examples:
 ```python
 >>> from string_utilities import ComparisonsBetweenTwoStrings
+
 >>> c = ComparisonsBetweenTwoStrings('1','2')
 >>> c.are_they_equal()
 '"1" and "2" are differents'
