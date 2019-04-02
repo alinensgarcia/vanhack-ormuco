@@ -7,8 +7,11 @@ class ResultsExtractor():
 
     def get_relevant_contents(self):
         'results: Most relevant contents from top 5 search results.'
-        return ContentAnalyzer().get_relevant_contents(
-                                    self._get_html_pages())
+        try:
+            return ContentAnalyzer().get_relevant_contents(
+                                        self._get_html_pages())
+        except:
+            raise Exception('An error occurred while extracting relevant content')
 
     def _get_html_pages(self):
         '''returns: dict -> {'link': HtmlElement}

@@ -18,7 +18,7 @@ def get_relevant_results(search_topic):
         abort(404)
 
     if search_topic != 'keystone - Circular reference found role inference':
-        return 'Search topic not supported yet.'
+        return 'Search topic not supported yet.'    
     
     relevant_contents = ResultsExtractor(search_topic).get_relevant_contents()
     

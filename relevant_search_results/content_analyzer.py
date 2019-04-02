@@ -12,19 +12,21 @@ class ContentAnalyzer():
         }
         '''
 
-        relevant_contents = {}
-        for url, html in dict_html_pages.items():
-            if 'github' in url:
-                relevant_contents[url] = self.__get_list_page_contents(
-                                                                html, '//td')
-            else:
-                relevant_contents[url] = (
-                    self._extract_relevant_paragraphs(html) + \
-                    self._extract_code_snippets(html)
-                )
+        try:
+            relevant_contents = {}
+            for url, html in dict_html_pages.items():
+                if 'github' in url:
+                    relevant_contents[url] = self.__get_list_page_contents(
+                                                                    html, '//td')
+                else:
+                    relevant_contents[url] = (
+                        self._extract_relevant_paragraphs(html) + \
+                        self._extract_code_snippets(html)
+                    )
 
-        return relevant_contents
-
+            return relevant_contents
+        except:
+            raise Exception('An error occurred while analyzing relevant content')
 
     def _extract_code_snippets(self, html):
         '''return: ['content1', 'content2']'''

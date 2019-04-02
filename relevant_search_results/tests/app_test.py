@@ -10,9 +10,11 @@ class TestApp(TestCase):
         response = self.app.get('/relevant_results/' + self.search_topic)
         self.assertEqual(200, response.status_code)
         
-        # print(response.data)
-        
-    # def test_get_empty_search_topic(self):
-    #     search_topic = ''
-    #     # get('/relevant-search-results/api/v1.0/results/<search_topic>')
-    #     pass
+    def test_unsupported_search_topic(self):
+        response = self.app.get('/relevant_results/NOT {}'.format(
+                                                            self.search_topic))
+        self.assertEqual(response.get_data(), b'Search topic not supported yet.')
+
+    def test_get_empty_search_topic(self):
+        response = self.app.get('/relevant_results/')
+        self.assertEqual(404, response.status_code)

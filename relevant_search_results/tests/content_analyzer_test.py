@@ -23,3 +23,12 @@ class ContentAnalyzerTest(TestCase):
         for url, relevant_content in relevant_contents.items():
             self.assertIn('http', url)
             self.assertNotEqual(len(relevant_content), 0)
+
+    def test_error_handling(self):
+        wrong_arg = ''
+        error_msg = 'An error occurred while analyzing relevant content'
+
+        with self.assertRaises(Exception) as context:
+            ContentAnalyzer().get_relevant_contents(wrong_arg)
+
+        self.assertTrue(error_msg in str(context.exception))

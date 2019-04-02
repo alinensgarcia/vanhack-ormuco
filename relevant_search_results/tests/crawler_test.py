@@ -14,6 +14,16 @@ class GoogleCrawlerTest(TestCase):
         self.assertIsInstance(links, list)
         self.assertNotEqual(len(links), 0)
 
+    def test_error_handling(self):
+        wrong_arg = 0
+        error_msg = 'An error occurred while crawling Google results'
+
+        with self.assertRaises(Exception) as context:
+            GoogleCrawler(wrong_arg).get_top5_links()
+
+        self.assertTrue(error_msg in str(context.exception))
+
+
 class SiteCrawlerTeste(TestCase):
     
     def setUp(self):
@@ -25,3 +35,12 @@ class SiteCrawlerTeste(TestCase):
 
     def test_get_html_pages(self):
         SiteCrawler(self.links).get_html_pages()
+
+    def test_error_handling(self):
+        wrong_arg = 0
+        error_msg = 'An error occurred while crawling site content'
+
+        with self.assertRaises(Exception) as context:
+            SiteCrawler(wrong_arg).get_html_pages()
+
+        self.assertTrue(error_msg in str(context.exception))

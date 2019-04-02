@@ -1,6 +1,5 @@
 from unittest import TestCase
 from results_extractor import ResultsExtractor
-import json
 
 
 class TestResultsExtractor(TestCase):
@@ -13,3 +12,12 @@ class TestResultsExtractor(TestCase):
         for url, relevant_content in rc.items():
             self.assertIn('http', url)
             self.assertNotEqual(len(relevant_content), 0)
+
+    def test_error_handling(self):
+        wrong_arg = ['']
+        error_msg = 'An error occurred while extracting relevant content'
+
+        with self.assertRaises(Exception) as context:
+            ResultsExtractor(wrong_arg).get_relevant_contents()
+
+        self.assertTrue(error_msg in str(context.exception))
