@@ -1,11 +1,8 @@
 import unittest
-from A import two_lines_overlap
+from lines_overlap import two_lines_overlap
  
-class TestA(unittest.TestCase):
- 
-    def setUp(self):
-        pass
- 
+class two_lines_overlap_test(unittest.TestCase):
+
     def test_wrong_input_tuple(self):
         try:
             two_lines_overlap(1, (1,2))
