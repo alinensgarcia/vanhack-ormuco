@@ -36,6 +36,6 @@ Examples:
 
 # Run automated tests
 ```
-python3.6 -m unittest test_lines_overlap.py
-python3.6 -m unittest test_string_utilities.py
+python3.6 -m unittest lines_overlap_test.py
+python3.6 -m unittest string_utilities_test.py
 ```
