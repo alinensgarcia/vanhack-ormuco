@@ -2,7 +2,7 @@
 Description of components:
 - `results_extractor.py`: In this package, class `ResultsExtractor` is responsible for control the flow of the main functionality of the API.
 - `crawler.py`: In this package there are 2 classes: `GoogleCrawler` which is responsible for crawling Google results page and `SiteCrawler` which is responsible for crawl and extract source content from top 5 pages.
-- `content_analyzer.py`: In this package, class `ResultsExtractor` is responsible for analyze the pages source codes and extract the most relevants contents. For now, only a naive approach is implemented. In an eventual future, more complex approaches could be implemented, such as Machile Learning algorithms, for example Natural Language Processing, in order to extract the most relevant contents.
+- `content_analyzer.py`: In this package, class `ResultsExtractor` is responsible for analyze the pages source codes and extract the most relevants contents. For now, only a naive approach is implemented. In an eventual future, more complex approaches could be implemented, such as Machine Learning algorithms, for example Natural Language Processing, in order to extract the most relevant contents.
 **PS:** Using NLP in this case is not trivial because the subject of this Case is very specific, it refers to a software development topic. We could use TD-IDF technique to identify the most relevant paragraphs or phrases, and when appropriate, select the code snippets releated to. In order to build an generical content extractor, the algorithm should be even more robust and complex, being capable of identifying the subject of the search and dealing with it in appropriate manner.
 - `app.py`: The API, a Flask application.
 
